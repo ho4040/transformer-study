@@ -16,8 +16,24 @@ TorchText는 PyTorch의 사전 학습 과정에 도움이 되는 텍스트 데�
 
 * 도메인 특화 데이터셋: TorchText는 IMDB, SNLI, Multi30k 등의 여러 NLP 작업을 위한 사전 구성된 데이터셋을 제공합니다.
 
+## 본 코드에서 사용한 TorchText 기능
 
-## Datasets
+### Field
+
+클래스는 텍스트 데이터를 어떻게 처리할지를 정의하는데 사용됩니다. Field는 토큰화, 단어를 숫자로 변환하는 어휘집 생성, 텐서 변환 등의 작업을 캡슐화합니다.
+
+### TabularDataset
+
+csv 파일로 된 데이터셋을 불러와 사용하기 위해서 이용.
+
+### BucketIterator 
+
+BucketIterator 는 TorchText에서 제공하는 데이터 로더의 한 종류로, 특히 텍스트 데이터를 효율적으로 처리하는 데 유용합니다.
+텍스트 데이터의 특성 상, 각각의 예제 (일반적으로 문장 또는 문서)는 서로 다른 길이를 가질 수 있습니다. 이는 배치 처리를 어렵게 만드는데, 딥러닝 모델은 입력 데이터의 길이가 일정해야 하기 때문입니다.
+이 문제를 해결하기 위해, 일반적으로 가장 긴 예제에 맞춰서 더 짧은 예제들에 패딩을 추가하는 방식을 사용합니다. 하지만, 매우 긴 예제와 짧은 예제가 같은 배치에 들어가게 되면, 많은 양의 패딩이 필요하게 되어 메모리 낭비와 계산 비효율성을 초래합니다.
+BucketIterator는 이러한 문제를 해결하기 위해 사용되며, 비슷한 길이를 가진 예제들을 함께 묶어줍니다. 이를 통해 각 배치 내에서 필요한 패딩의 양을 최소화하게 되어, 메모리 사용량을 줄이고 계산 효율성을 향상시킵니다.
+
+## HuggingFace Datasets 라이브러리
 
 Hugging Face의 Datasets 라이브러리는 대량의 NLP 데이터셋에 빠르고 쉽게 접근하고, 이를 위한 효율적인 데이터 처리 기능을 제공하는 Python 라이브러리입니다. 다음은 주요 기능과 특징들에 대한 개요입니다.
 
@@ -33,7 +49,12 @@ Hugging Face의 Datasets 라이브러리는 대량의 NLP 데이터셋에 빠르
 
 * 머신러닝 연동: Datasets 라이브러리는 Hugging Face의 Transformers 라이브러리와 잘 연동됩니다. 이를 통해 텍스트 분류, 질문 응답, 기계 번역 등의 다양한 NLP 작업을 수행할 수 있습니다.
 
-# requirements
+## 본 코드에서 사용한 Datasets 기능
+
+HuggingFace 에서 제공하는 `msarmi9/korean-english-multitarget-ted-talks-task` 데이터셋을 사용하기 위해서 이용하였습니다.
+
+
+# Requirements
 
 python 3.10 사용.
 
@@ -49,3 +70,8 @@ python -m spacy download en
 python -m spacy download ko_core_news_sm
 ```
 
+
+
+# References
+
+* https://github.com/ndb796/Deep-Learning-Paper-Review-and-Practice

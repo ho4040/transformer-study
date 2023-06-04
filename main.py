@@ -124,13 +124,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(device)
 #%%
 from torchtext.data import BucketIterator
-"""
-# BucketIterator : 
-BucketIterator 는 TorchText에서 제공하는 데이터 로더의 한 종류로, 특히 텍스트 데이터를 효율적으로 처리하는 데 유용합니다.
-텍스트 데이터의 특성 상, 각각의 예제 (일반적으로 문장 또는 문서)는 서로 다른 길이를 가질 수 있습니다. 이는 배치 처리를 어렵게 만드는데, 딥러닝 모델은 입력 데이터의 길이가 일정해야 하기 때문입니다.
-이 문제를 해결하기 위해, 일반적으로 가장 긴 예제에 맞춰서 더 짧은 예제들에 패딩을 추가하는 방식을 사용합니다. 하지만, 매우 긴 예제와 짧은 예제가 같은 배치에 들어가게 되면, 많은 양의 패딩이 필요하게 되어 메모리 낭비와 계산 비효율성을 초래합니다.
-BucketIterator는 이러한 문제를 해결하기 위해 사용되며, 비슷한 길이를 가진 예제들을 함께 묶어줍니다. 이를 통해 각 배치 내에서 필요한 패딩의 양을 최소화하게 되어, 메모리 사용량을 줄이고 계산 효율성을 향상시킵니다.
-"""
+
 train_iterator, valid_iterator, test_iterator = BucketIterator.splits(
     (train_dataset, valid_dataset, test_dataset),
     batch_size=BATCH_SIZE,
