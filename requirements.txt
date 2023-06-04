@@ -1,0 +1,5 @@
+spacy
+torchtext==0.6.0
+datasets
+pandas
+torch
