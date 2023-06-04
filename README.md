@@ -1,4 +1,8 @@
-# Learn
+# 실습 목표
+
+Transformer 를 이용해서 English to Korean 을 만들어 봅시다.
+
+# 라이브러리 
 
 ## TorchText
 
