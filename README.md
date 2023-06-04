@@ -49,9 +49,3 @@ python -m spacy download en
 python -m spacy download ko_core_news_sm
 ```
 
-
-```bash
-pip install -r requirements.txt
-python -m spacy download en 
-python -m spacy download ko_core_news_sm # 한국어 토크나이저 
-```
